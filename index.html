@@ -8,21 +8,21 @@
     <title>Hangman Game</title>
 </head>
 <body>
-    <div class="cotainer">
+    <div class="container">
         <h1>Javascript Hangman Game</h1>
         <h3>Choose the alphabet below to guess the word</h3>
-        <div id="letter-div"></div>
+        <div id="letters-div"></div>
         <div id="word-div"></div>
-        <h3>Remaining Lives: <span class="lives">5</span></h3>
-        <div class="rest">
-            <button class="reset-btn">Reset</button>
+        <h3>Remaining Lives: <span id="lives">5</span></h3>
+        <div class="reset">
+            <button id="reset-btn">Reset</button>
         </div>
     </div>
-    <div class="notif hidden">
+    <div id="notif hidden">
         <h2>Game over !!</h2>
-        <h3 class="notif-content">You won</h3>
-        <h4>Correct Word: <span class="notif-span"></span></h4>
-        <button class="notif-btn">Play again</button>
+        <h3 id="notif-content">You won</h3>
+        <h4>Correct Word: <span id="notif-span"></span></h4>
+        <button id="play-again">Play again</button>
     </div>
     <script src="script.js"></script>
 </body>
