@@ -7,8 +7,9 @@ const categories = {
 const word_list = Object.keys(categories);
 const getRandom = (x) => x[Math.floor(Math.random() * x.length)];
 const random_category = getRandom(word_list);
-const random_word = getRandom(categories[random_category])
+const random_word = getRandom(categories[random_category]);
 console.log(random_word);
+
  
 
 
