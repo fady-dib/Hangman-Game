@@ -56,6 +56,15 @@ const showNotif = (msg) => {
     notif_content.textContent = `you${msg}`;
 }
 
+const decreaseLife = () => {
+    lives--;
+    live_span.textContent = lives;
+    if (lives == 0){
+        showNotif('lost')
+    }
+    
+}
+
 // letters.forEach(btn => {
 //     btn.addEventListener('click', letterPress)
 // })
