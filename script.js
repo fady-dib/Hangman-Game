@@ -10,23 +10,24 @@ const play_again = document.getElementById('play-again');
 
 let lives;
 let letters = [];
-let html =""
-
+let html = ""
+let random_word = ""
+let flag = false
 
 const categories = {
-    cities: ['Manchester', 'Milan', 'Madrid', 'Amsterdam', 'Prague'],
-    football_clubs: ['Everton', 'Liverpool', 'Swansea', 'Chelsea', 'Hull', 'Manchester city', 'Newcastle united'],
-    movies: ['Alien', 'Dirty harry', 'Gladiotor', 'Finding-nemo', 'Jaws']
+    cities: ['MANCHESTER', 'MILAN', 'MADRID', 'AMSTERDAM', 'PRAGUE'],
+    football_clubs: ['EVERTON', 'LIVERPOOL', 'SWANSEA', 'CHELSEA', 'HULL', 'MANCHESTERCITY', 'NEWCASTLEUNITED'],
+    movies: ['ALIEN', 'DIRTYHARRY', 'GLADIATOR', 'FINDINGNEMO', 'JAWS']
 }
 
 const word_list = Object.keys(categories);
 const getRandom = (x) => x[Math.floor(Math.random() * x.length)];
 const random_category = getRandom(word_list);
-const random_word = getRandom(categories[random_category]);
+//  random_word = getRandom(categories[random_category]);
 console.log(random_word);
 
 const init = (state) => {
-    // word_div.innerHTML = "";
+    word_div.innerHTML = "";
     if (state == 'start') {
         for (let i of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ') {
             const html = `<button class="alpha">${i}</button`;
@@ -41,14 +42,14 @@ const init = (state) => {
 
     }
 
-    notif.classList.add('hidden')
-    const random_word = getRandom(categories[random_category]);
+    random_word = getRandom(categories[random_category]);
+    console.log(random_word)
     lives = 5
 
     live_span.textContent = lives
-    
+
     for (let i = 0; i < random_word.length; i++) {
-     html += `<p class="word" id="${i}">_</p>`;
+        html += `<p class="word" id="${i}">_</p>`;
     }
     word_div.insertAdjacentHTML('beforeend', html);
 
@@ -58,7 +59,7 @@ const init = (state) => {
 init('start');
 
 letters = document.querySelectorAll('.alpha');
-console.log(letters)
+// console.log(letters)
 
 const showNotif = (msg) => {
     notif.classList.remove('hidden');
@@ -78,7 +79,7 @@ const decreaseLife = () => {
 const getIndexes = (letter) => {
     let indexes = [];
     [...random_word].forEach((value, i) => {
-        if (value == letter) {
+        if (value === letter) {
             const index = i;
             indexes.push(index)
         }
@@ -98,24 +99,33 @@ const checkWord = () => {
 
 
 const letterPress = () => {
-    console.log(letters)
-    console.log(this.textContent)
+    // console.log(letters)
+    // console.log(this.textContent)
     const letter = button_content
-
+    let indexes_list = getIndexes(letter);
     if (random_word.includes(letter)) {
-        const indexes_list = getIndexes(letter);
-        indexes_list.forEach((value) => {
-            word_div.children[value].textContent = letter
-        })
+
+        // indexes_list.forEach((value,index) => {
+        //     word_div.children[index].textContent = letter
+        // })
+        for (let i = 0; i < indexes_list.length; i++) {
+            word_div.children[indexes_list[i]].textContent = letter
+        }
+
         if (checkWord()) {
             showNotif('Won');
         }
-        else {
-            decreaseLife();
-        }
+
+
     }
-    console.log(this)
-    letters.classList.add('disabled');
+    else {
+        decreaseLife();
+    }
+    indexes_list.forEach((val, index) => {
+        letters.children[val].classList.add('disabled')
+        console.log(letters)
+    })
+ 
 }
 let button_content = "";
 
@@ -123,7 +133,7 @@ letters.forEach((btn) => {
     btn.addEventListener('click', (e) => {
         button_content = e.target.textContent
         console.log(button_content)
-        letterPress
+        letterPress()
     })
 })
 
