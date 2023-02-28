@@ -120,18 +120,26 @@ const letterPress = () => {
     }
     else {
         decreaseLife();
+        if(lives == 0){
+            for(let i =0; i< letters_div.length; i++){
+            letters_div.children[i].classList.add('disabled')
+        }
     }
-    indexes_list.forEach((val, index) => {
-        letters.children[val].classList.add('disabled')
-        console.log(letters)
-    })
+   // })
+    }
+    // indexes_list.forEach((val, index) => {
+    //     console.log(indexes_list)
+        btn_clicked.classList.add('disabled')
+       
  
 }
 let button_content = "";
+let btn_clicked;
 
 letters.forEach((btn) => {
     btn.addEventListener('click', (e) => {
         button_content = e.target.textContent
+        btn_clicked = e.target
         console.log(button_content)
         letterPress()
     })
