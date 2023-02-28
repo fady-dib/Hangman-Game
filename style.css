@@ -17,7 +17,7 @@ body{
     display: none;
 }
 
-.disabled{
+#disabled{
     pointer-events: none;
     background-color: darkgrey;
 }
