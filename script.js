@@ -6,7 +6,7 @@ const notif = document.getElementById('notif');
 const notif_content = document.getElementById('notif-content');
 const notif_span = document.getElementById('notif-span');
 const play_again = document.getElementById('play-again');
-
+const message = document.getElementById('status')
 
 let lives;
 let letters = [];
@@ -65,6 +65,15 @@ const showNotif = (msg) => {
     notif.classList.remove('hidden');
     notif_span.textContent = random_word;
     notif_content.textContent = `you${msg}`;
+    if(msg =='Won'){
+        message.textContent = "Congratulations !!"
+    }
+    for (let i = 0; i < letters_div.children.length; i++) {
+        if (letters_div.children[i].classList.add('disabled')) {
+            value = false;
+        }
+    }
+    
 }
 
 const decreaseLife = () => {
@@ -114,6 +123,7 @@ const letterPress = () => {
 
         if (checkWord()) {
             showNotif('Won');
+            
         }
 
 
