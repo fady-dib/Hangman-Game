@@ -20,8 +20,8 @@ const categories = {
 const word_list = Object.keys(categories);
 const getRandom = (x) => x[Math.floor(Math.random() * x.length)];
 const random_category = getRandom(word_list);
-// const random_word = getRandom(categories[random_category]);
-// console.log(random_word);
+const random_word = getRandom(categories[random_category]);
+console.log(random_word);
 
 const init = (state) => {
     // word_div.innerHTML = "";
@@ -117,6 +117,13 @@ letters.forEach(btn => {
     btn.addEventListener('click', letterPress)
 })
 
+reset_btn.addEventListener('click', function(){
+    init('reset');
+})
+
+play_again.addEventListener('click', function() {
+    init('reset')
+})
 
 
 
