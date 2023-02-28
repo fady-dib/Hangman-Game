@@ -65,6 +65,18 @@ const decreaseLife = () => {
     
 }
 
+const getIndexes = (letter) => {
+    let indexes = [];
+    [...select_word].forEach((value, i) => {
+        if (value == letter) {
+            const index = i;
+            indexes.push(index)
+        }
+    })
+    return indexes;
+}
+
+
 // letters.forEach(btn => {
 //     btn.addEventListener('click', letterPress)
 // })
