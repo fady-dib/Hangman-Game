@@ -39,7 +39,7 @@ const init = (state) => {
             btn.classList.remove('disabled');
         });
         html = ""
-
+        notif.classList.add('hidden')
     }
 
     random_word = getRandom(categories[random_category]);
