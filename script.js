@@ -44,7 +44,7 @@ const init = (state) => {
 
         for (let i=0 ; i < random_word.length; i++){
             const html =`<p class="word">_</p>`;
-            word_div.insertAdjacentElement('beforeend', html);
+            word_div.insertAdjacentHTML('beforeend', html);
         }
 }
 
