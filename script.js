@@ -7,8 +7,10 @@ const notif_content = document.getElementById('notif-content');
 const notif_span = document.getElementById('notif-span');
 const play_again = document.getElementById('play-again');
 
-let letters;
+
 let lives;
+let letters = [];
+let html =""
 
 
 const categories = {
@@ -35,25 +37,28 @@ const init = (state) => {
         letters.forEach(btn => {
             btn.classList.remove('disabled');
         });
+        html = ""
+
     }
+
     notif.classList.add('hidden')
     const random_word = getRandom(categories[random_category]);
     lives = 5
 
-    letters = document.querySelectorAll('.alpha');
-    live_span.innerText = lives
-
-    for (let i = 0; i < random_word.length; i++) {
-        const html = `<p class="word">_</p>`;
-        word_div.insertAdjacentHTML('beforeend', html);
-    }
-
+    live_span.textContent = lives
     
+    for (let i = 0; i < random_word.length; i++) {
+     html += `<p class="word" id="${i}">_</p>`;
+    }
+    word_div.insertAdjacentHTML('beforeend', html);
+
 }
 
 
+init('start');
 
-init('start')
+letters = document.querySelectorAll('.alpha');
+console.log(letters)
 
 const showNotif = (msg) => {
     notif.classList.remove('hidden');
@@ -95,12 +100,12 @@ const checkWord = () => {
 const letterPress = () => {
     console.log(letters)
     console.log(this.textContent)
-    const letter = this.textContent
+    const letter = button_content
 
     if (random_word.includes(letter)) {
         const indexes_list = getIndexes(letter);
         indexes_list.forEach((value) => {
-            word_div.children[value].textContent = this.textContent
+            word_div.children[value].textContent = letter
         })
         if (checkWord()) {
             showNotif('Won');
@@ -110,18 +115,23 @@ const letterPress = () => {
         }
     }
     console.log(this)
-    // this.classList.add('disabled');
+    letters.classList.add('disabled');
 }
+let button_content = "";
 
-letters.forEach(btn => {
-    btn.addEventListener('click', letterPress)
+letters.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        button_content = e.target.textContent
+        console.log(button_content)
+        letterPress
+    })
 })
 
-reset_btn.addEventListener('click', function(){
+reset_btn.addEventListener('click', function () {
     init('reset');
 })
 
-play_again.addEventListener('click', function() {
+play_again.addEventListener('click', function () {
     init('reset')
 })
 
