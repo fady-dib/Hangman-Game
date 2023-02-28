@@ -87,17 +87,27 @@ return value;
 }
 
 
-// letters.forEach(btn => {
-//     btn.addEventListener('click', letterPress)
-// })
+const letterPress = () =>{
+    const letter = this.textContent
 
-// const letterPress = () =>{
-//     const letter = this.textContent
+    if (random_word.includes(letter)){
+        const indexes_list = getIndexes(letter);
+        indexes_list.forEach((value) => {
+            word_div.children[value].textContent = this.textContent
+        })
+        if (checkWord()){
+            showNotif('Won');
+        }
+        else{
+            decreaseLife();
+        }
+    }
+    this.classList.add('disabled');
+}
 
-//     if (random_word.includes(letter)){
-//         const indexes_list = getIndexes(letter);
-//     }
-// }
+letters.forEach(btn => {
+    btn.addEventListener('click', letterPress)
+})
  
 
 
