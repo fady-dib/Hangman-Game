@@ -76,6 +76,16 @@ const getIndexes = (letter) => {
     return indexes;
 }
 
+const checkWord = () => {
+    let value = true;
+    for (let i= 0; i <word_div.children.length; i++){
+        if(word_div.children[i].textContent == '_'){
+            value = false;
+        }
+    }
+return value;
+}
+
 
 // letters.forEach(btn => {
 //     btn.addEventListener('click', letterPress)
