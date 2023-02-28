@@ -12,3 +12,7 @@ body{
 .word{
     margin-right: 1.5rem;
 }
+
+.hidden{
+    display: none;
+}

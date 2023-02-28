@@ -49,6 +49,24 @@ const init = (state) => {
 }
 
 init('start')
+
+const showNotif = (msg) => {
+    notif.classList.remove('hidden');
+    notif_span.textContent = random_word;
+    notif_content.textContent = `you${msg}`;
+}
+
+// letters.forEach(btn => {
+//     btn.addEventListener('click', letterPress)
+// })
+
+// const letterPress = () =>{
+//     const letter = this.textContent
+
+//     if (random_word.includes(letter)){
+//         const indexes_list = getIndexes(letter);
+//     }
+// }
  
 
 
